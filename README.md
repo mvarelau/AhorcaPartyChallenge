@@ -70,11 +70,15 @@ COPIAR FUNCIÓN YA LISTA
 
 ### Función Rayas palabra incógnita
 
-Nuestra segunda función tiene varias aplicaciones. Por una parte, se inicia el conteo de tiempo de juego (para en un futuro establecer el puntaje del usuario) usando **time¨**. 
+Nuestra segunda función es la función **"motor"** del juego, ya que en torno a está funciona la mayoría del sentido del juego. Por una parte, se inicia el conteo de tiempo de juego (para en un futuro establecer el puntaje del usuario) usando **time¨**. 
 
-Por otra parte, haciendo uso de la función **len** se establece el largo de la palabra seleccionada por el programa y, se imprime un mensaje para que el usuario sepa la cantidad de letras que contiene la palabra y además, se muestra en pantallas las líneas que representan cada palabra que se debe adivinar.
+Por otra parte, haciendo uso de la función **len** se establece el largo de la palabra seleccionada por el programa y, se imprime un mensaje para que el usuario sepa la cantidad de letras que contiene la palabra y además, se muestra en pantallas las líneas que representan cada caracter que se debe adivinar. Nos hubiera gustado que las lineas fueran un poco más largas, y no solo un guión, pero como trabajaríamos con la función ```len``` decidimos que era más práctico tan solo usar un guión.
 
-Por último, haciendo uso de **while** usamos una condición para que se repita continuamente la solicitud para que el usuario ingrese una letra hasta que se quede sin vidas. Dentro de este, tambien se llama la función donde se imprimirá el avance del ahorcado cada vez que el usuario pierda una vida. Decidimos empatizar con el usuario y, por esta razón, en caso de ingresar una palabra repetida se le informará que repitió la palabra y NO perderá una vida (por distraido). Decidimos incluir dentro de esta misma función por efectos prácticos el diagrama final del ahorcado cuando el usuario se queda sin vidas (y ya no se cumpla el while) y un letrero informando que perdió el juego (en el idioma correspondiente)
+Por último, haciendo uso de **while** usamos una condición para que se repita continuamente la solicitud para que el usuario ingrese una letra hasta que se quede sin vidas. Dentro de este, tambien se llama la función donde se imprimirá el avance del ahorcado cada vez que el usuario pierda una vida. Decidimos empatizar con el usuario y, por esta razón, en caso de ingresar una palabra repetida se le informará que repitió la palabra, NO perderá una vida (por distraido) y se le pedirá al usuario ingresar una letra diferente. Cada vez que la palabra ingresada sea correcta, se valora en que posición está, y por último con ayuda de un *slicing* se dibujan la lineas hasta antes de la posición de la letra, la letra, y las lineas sobreantes después de la posición de la letra.
+
+Decidimos incluir dentro de esta misma función por efectos prácticos el diagrama final del ahorcado cuando el usuario se queda sin vidas (y ya no se cumpla el while) y un letrero informando que perdió el juego (en el idioma correspondiente). 
+
+Al final de está función se retornará las variables start_time, vidas (se le irán restando a esta variable cada vez que el usuario pierda una vida) y vidas_orj (una copia de la variable vidas original para usarla en la función de puntaje). Esto para poder usarlas en otras funciones posteriores.
 
 ```python
 COPIAR FUNCIÓN YA LISTA
@@ -249,86 +253,13 @@ def imprimir_ahorcado(vidas):
                     __
         """)
 ```
-### Lógica 
-Ya teniendo el muñeco hecho podiamos crear la función "Motor" del juego, está función sería la que evaluaría las letras que ingresa el usuario, y con el resultado de ese análisis se imprimiría las lineas con la letra adivinada, si era el caso, en su posición determinada y si no, se encargaría de restar un vida y dibujar el correspondiente muñeco.
-* Lo primero es ecoger una palabra y asignarla a una variable, posteriormente se dibujan las lineas correspondientes a la cantidad de caracteres ( Nos hubiera gustado que las lineas fueran un poco más largas, y no solo un guión, pero como trabajaríamos con la función ```len``` decidimos que era más práctico)
-* El ciclo while se hizo con la condición de que las vidas fueran mayores a 0. En cada una de las iteraciones del juego se imprime el muñeco, las líneas y se le pide al usuario ingresar una letra, más adelante se evalúa si esta letra ya fue ingresada antes, esto se hace gracias a una lista vacía a la que se van agregando los elementos que el usuario ingresa, si el elemento resulta estar en la lista, se pedirá al usuario ingresar una letra diferente, en el caso de no estar, se examina si hace parte de la palabra, si hace parte entonces se valora en que posición está, y por último con ayuda de un *slicing* se dibujan la lineas hasta antes de la posición de la letra, la letra, y las lineas sobreantes después de la posición de la letra.
-```python
-def rayas_dibujar(idioma, vidas, opciones):
-    aleatorio = random.choice(opciones)
-    palabra = aleatorio.lower()
-    letras_ingresadas=[]
-    if idioma == "español":
-        print("La palabra tiene " + str(len(palabra)) + " letras")
-    elif idioma == "inglés":
-        print("The word has " + str(len(palabra)) + " letters")
-    elif idioma == "francés":
-        print("Le mot a " + str(len(palabra)) + " lettres")
 
-    rayas = "-" * len(palabra)
-    while vidas > 0:
-        imprimir_ahorcado(vidas)
-        print(rayas)
-        print(" ")
-        letra: str = input("Ingrese una letra: " if idioma == "español" else "Enter a letter: " if idioma == "inglés" else "Entrez une lettre: ")
-        
-        if letra in letras_ingresadas:
-            print("Ya ingresaste esa letra, ingresa otra " if idioma=="español" else "You already entered that letter, enter another" if idioma =="inglés" else "Vous avez déjà entré cette lettre, entrez un autre")
-        else: 
-          letras_ingresadas.append(letra)
-          if letra in palabra:
-              for i in range(len(palabra)):
-                  if palabra[i] == letra:
-                      rayas = rayas[:i] + letra + rayas[i + 1:]
-```
-* De no cumplirse que la letra esté en la palabra se resta una vida, si el usuario aún cuenta con vidas, el juego le notificará cuantas le quedan, pero si por el contrario el usuario ya no cuenta con vidas, el programá le dirá que perdió y se cerrará el rpograma.
-```python
-else:
-              vidas -= 1
-              if vidas != 0:
-                  print(f"Te quedan {vidas} vidas" if idioma == "español" else f"You have left {vidas} lives" if idioma == "inglés" else f"Il te reste {vidas} vies")
-              else:
-                  print(f"Te quedaste sin vidas, vuélvelo a intentar" if idioma == "español" else f"You ran out of lives, try again" if idioma == "inglés" else f"Tu as manqué de vies, réessaie")
-                  print("""
-                       ___
-                      |   |
-                     \O/  |
-                      |   |
-                     / \  |
-                    ______|
-          """)
-                  if idioma=='español':
-                    print(""" ______               _ _                       __ 
-(_____ \             | (_)     _               / _)
- _____) )___  ____ _ | |_  ___| |_  ____    _ / /  
-|  ____/ _  )/ ___) || | |/___)  _)/ _  )  (_| (   
-| |   ( (/ /| |  ( (_| | |___ | |_( (/ /    _ \ \_ 
-|_|    \____)_|   \____|_(___/ \___)____)  (_) \__)""")
-                  if idioma == "inglés":
-                    print(""" _     _              _                         __ 
-| |   | |            | |                       / _)
-| |___| |__  _   _   | | ___   ___  ____    _ / /  
- \_____/ _ \| | | |  | |/ _ \ /___)/ _  )  (_| (   
-   ___| |_| | |_| |  | | |_| |___ ( (/ /    _ \ \_ 
-  (___)\___/ \____|  |_|\___/(___/ \____)  (_) \__)""")
-                  if idioma =="francés":
-                    print(""" _______                                            _              __ 
-(_______)                                          | |            / _)
- _      _   _     ____  ___    ____   ____  ____ _ | |_   _    _ / /  
-| |    | | | |   / _  |/___)  |  _ \ / _  )/ ___) || | | | |  (_| (   
-| |____| |_| |  ( ( | |___ |  | | | ( (/ /| |  ( (_| | |_| |   _ \ \_ 
- \______)____|   \_||_(___/   | ||_/ \____)_|   \____|\____|  (_) \__)
-                              |_|                                     """)
-```
+### Función Puntaje
+
+Ahora, una de las funciones más esperadas por el usuario...la función que determina el puntaje. Si se corré está función significa que el juego llegó a su final y por está razón el cronometro parará y se calculará el tiempo total que se demoró el usuario en adivinar la palabra. 
+
 * ¡Listo, el juego se ejecuta perfectamente, el usuario puede decidir en que modalidad jugar, y las iteraciones se hacen correctamente! ¿Ahora qué? Bueno, sería bastante genial competir con un amigo.\
 Descubrimos que existe una librería llamda ```threading``` que permite la creación y gestión de hilos. Los hilos son unidades de ejecución independientes que permiten que un programa realice múltiples tareas simultáneamente. Al utilizar la clase Thread, se pueden crear y controlar hilos, cada uno ejecutando funciones específicas. Sin embargo, tuvimos algunos problemas ya que es crucial considerar la sincronización y los problemas de concurrencia al acceder a datos compartidos entre hilos, algo que evidentemente pordia ocurrir cuando los hilos que queríamos manejar eran de la misma función.
-
-
-
-
-
-
-
 
 
 
