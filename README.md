@@ -315,5 +315,19 @@ Para definir el puntaje le dimos un puntaje base según el nivel de dificultad q
     </tbody>
 </table>
 
+Para calcular el puntaje final se realizara el siguiente calculo:
+
+```python
+puntaje_final = 10000 - (elapsed_time * puntaje_base) - puntaje_vidas
+```
+
+En esta podemos observar que el puntaje máximo será 10.000 y a este valor se le restará: 
+ * La multiplicación del tiempo que se demoró en adivinar la palabra por el puntaje base (elapsed_time * puntaje_base)
+ * El puntaje que obtuvo según la cantidad de vidas restantes
+
+```python
+AQUÍ PONER LA FUNCIÓN FINAL
+```
+
 * ¡Listo, el juego se ejecuta perfectamente, el usuario puede decidir en que modalidad jugar, y las iteraciones se hacen correctamente! ¿Ahora qué? Bueno, sería bastante genial competir con un amigo.\
 Descubrimos que existe una librería llamda ```threading``` que permite la creación y gestión de hilos. Los hilos son unidades de ejecución independientes que permiten que un programa realice múltiples tareas simultáneamente. Al utilizar la clase Thread, se pueden crear y controlar hilos, cada uno ejecutando funciones específicas. Sin embargo, tuvimos algunos problemas ya que es crucial considerar la sincronización y los problemas de concurrencia al acceder a datos compartidos entre hilos, algo que evidentemente pordia ocurrir cuando los hilos que queríamos manejar eran de la misma función.
