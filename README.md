@@ -10,7 +10,7 @@
 
 En un principio tuvimos que organizar los pasos que ibamos a seguir y las posibilidades que teníamos para hacer el juego un poco más complejo. Lo plasmamos en el siguiente cuadro: 
 
-IMAGEN BASE DE DATOS CON EL ALEMÁN
+![image](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c967ae9d-e624-432f-a007-9690e3f82a9a)
 
 A partir de este cuadro empezamos a tomar decisiones: 
 
@@ -23,7 +23,7 @@ A partir de este cuadro empezamos a tomar decisiones:
 
 * Aún no sabiamos manejo de archivos más allá de drive en colab así que nos decidimos por lo conocido. Creamos un archivo en formato CSV en el que guardamos las más de 4000 palabras en los idiomas español, inglés, francés, y alemán. Cada idioma con su respectiva dificultada dada por la cantidad de letras. Aquí un pequeño fragmento:
   
-![image](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/80f77f31-6ce6-4dfa-aad7-7d025ab26bc5)
+FOTO BASE DE DATOS CON ALEMÁN 
 
 ### Importar
 
