@@ -30,7 +30,7 @@ A partir de este cuadro empezamos a tomar decisiones:
 Empezamos importando todas las librerías que necesitariamos para que corra el programa:
 
 | | Nombre | Uso |
-|-|-------------|-----------------------|
+|:-:|:-------------:|:-----------------------:|
 | 1 | Pandas | Importar nuestra base de datos |
 | 2 | Random | Seleccionar la palabra a adivinar |
 | 3 | threading | PARA QUE¿? |
@@ -258,11 +258,62 @@ def imprimir_ahorcado(vidas):
 
 Ahora, una de las funciones más esperadas por el usuario...la función que determina el puntaje. Si se corré está función significa que el juego llegó a su final y por está razón el cronometro parará y se calculará el tiempo total que se demoró el usuario en adivinar la palabra. 
 
+Para definir el puntaje le dimos un puntaje base según el nivel de dificultad que eligió (ya que en esta clase aprendimos a valor el esfuerzo y actitud) en caso de retarse con el nivel más dificil tendrá un putaje base más alto. Ademas, realizamos una equivalencia de puntaje_vidas que tiene en cuenta la cantidad de vidas seleccionadas (por cada nivel) y las vidas restantes que tiene.
+
+<table>
+    <thead>
+        <tr>
+            <th>Nivel</th>
+            <th>Puntaje Base</th>
+            <th>Vidas</th>
+            <th>Puntaje Vidas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3 align="center">Principiante</td>
+            <td rowspan=3 align="center">100</td>
+            <td align="center">5</td>
+            <td align="center">puntaje_vidas = 10 * (5 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">10</td>
+            <td align="center">puntaje_vidas = 10 * (10 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">15</td>
+            <td align="center">puntaje_vidas = 10 * (15 - vidas)</td>
+        </tr>
+        <tr>
+            <td rowspan=3 align="center">Intermedio</td>
+            <td rowspan=3 align="center">150</td>
+            <td align="center">5</td>
+            <td align="center">puntaje_vidas = 10 * (5 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">10</td>
+            <td align="center">puntaje_vidas = 10 * (10 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">15</td>
+            <td align="center">puntaje_vidas = 10 * (15 - vidas)</td>
+        </tr>
+        <tr>
+            <td rowspan=3 align="center">Avanzado</td>
+            <td rowspan=3 align="center">200</td>
+            <td align="center">5</td>
+            <td align="center">puntaje_vidas = 10 * (5 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">10</td>
+            <td align="center">puntaje_vidas = 10 * (10 - vidas)</td>
+        </tr>
+        <tr>
+            <td align="center">15</td>
+            <td align="center">puntaje_vidas = 10 * (15 - vidas)</td>
+        </tr>
+    </tbody>
+</table>
+
 * ¡Listo, el juego se ejecuta perfectamente, el usuario puede decidir en que modalidad jugar, y las iteraciones se hacen correctamente! ¿Ahora qué? Bueno, sería bastante genial competir con un amigo.\
 Descubrimos que existe una librería llamda ```threading``` que permite la creación y gestión de hilos. Los hilos son unidades de ejecución independientes que permiten que un programa realice múltiples tareas simultáneamente. Al utilizar la clase Thread, se pueden crear y controlar hilos, cada uno ejecutando funciones específicas. Sin embargo, tuvimos algunos problemas ya que es crucial considerar la sincronización y los problemas de concurrencia al acceder a datos compartidos entre hilos, algo que evidentemente pordia ocurrir cuando los hilos que queríamos manejar eran de la misma función.
-
-
-
-
-
-
