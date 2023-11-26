@@ -1,6 +1,7 @@
 # AhorcaPartyChallenge 
 
 ***"Un proyecto lleno frustraciones y alegrías, pero sobre todo enseñanzas"***
+
 **By Fotocopiadora Alejas²**
 
 ![Logo](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c92c3d58-f7b8-457c-92c4-595a98108c1b)
