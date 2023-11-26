@@ -7,20 +7,28 @@
 ![Logo](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c92c3d58-f7b8-457c-92c4-595a98108c1b)
 
 ## Planeación
+
 En un principio tuvimos que organizar los pasos que ibamos a seguir y las posibilidades que teníamos para hacer el juego un poco más complejo. Lo plasmamos en el siguiente cuadro: 
+
 ![image](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c967ae9d-e624-432f-a007-9690e3f82a9a)
+
 A partir de este cuadro empezamos a tomar decisiones: 
+
 * Definitivamente hariamos que el juego tuviera capacidad para tres idimomas diferentes ( que terminaron siendo 4)
 * Al finalizar la parte lógica del juego evaluaríamos la posibilidad de manejar puntajes.
 * El juego podría jugarse simultaneamente por dos personas.
+ 
  ## Realización
 ### Base de datos 
-* Aún no sabiamos manejo de archivos más allá de drive en colab así que nos decidimos por lo conocido. Creamos un archivo en formato CSV en el que guardamos las más de 4000 palabras en los idiomas español, inglés, francés, y alemán. Cada idioma con su respectiva dificultada dada por la cantidad de letras. Aquí un pequeño fragmento: 
+
+* Aún no sabiamos manejo de archivos más allá de drive en colab así que nos decidimos por lo conocido. Creamos un archivo en formato CSV en el que guardamos las más de 4000 palabras en los idiomas español, inglés, francés, y alemán. Cada idioma con su respectiva dificultada dada por la cantidad de letras. Aquí un pequeño fragmento:
+  
 ![image](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/80f77f31-6ce6-4dfa-aad7-7d025ab26bc5)
 
-### Preparación (Importar)
+### Importar
 
 Empezamos importando todas las librerías que necesitariamos para que corra el programa:
+
 | | Nombre | Uso |
 |-|-------------|-----------------------|
 | 1 | Pandas | Importar nuestra base de datos |
@@ -35,22 +43,27 @@ import threading
 import time
 ```
 
-### Preparación (Función idioma y nivel)
+### Función idioma y nivel
 
 Empezamos programando la preparación del juego, es decir las posibilidades que tendría el jugador para un juego más dinamico.
 
 Lo primero que hicimos fue definir nuestras variables: idioma, nivel, vidas y opciones. El programa decidimos introducirlo en un **while** para asegurarnos de que el usuario ingrese únicamente las opciones que tenemos contempladas, en caso de ser diferente las preguntas se volverán a realizar hasta que el usuario lea y siga de manera correcta el enunciado.
 
    - Idioma:\
+     
      El usuario debe escoger entre las opciones: español, inglés, francés o alemán. Después de haber sido escogido el idioma, el resto del juego se ejecutaria en este idioma, esto quiere decir, que realizamos condicionales y outputs especificos por cada idioma.
      
    - Dificultad por palabra:\
+     
       El usuario debe escoger entre nivel principiante, intermedio o avanzado. Cada nivel de dificultad está determinado por la cantidad de letras que contiene la palabra (principiante: 0-5; intermedio: 6-10; avanzado: 11-16) escogida de la base de datos. El nivel seleccionado determina la columna de la base de datos en el que la función random se movería y seleccionaría la palabra aleatoria.
      
    - Dificultad por vidas:\
+     
      El usuario debe seleccionar si desea contar con 5, 10 o 15 vidas; esto influirá en su puntaje final (teniendo en cuenta tambien el nivel de dificultad) Además, según la cantidad de vidas restantes se irá dibujando el ahorcado.
    - ¡Que inicie el juego!:\
+     
      Una vez este determinada cada variable aparecerá un letrero tipo video juego (en el idioma seleccionado) informándole al usuario que comenzará el juego.
+
 ```python
 def idioma_y_nivel(base1):
     idioma=''
@@ -205,10 +218,25 @@ def idioma_y_nivel(base1):
 
         break
 ```
+
+### Función Rayas palabra incógnita
+
+Nuestra segunda función tiene varias aplicaciones. Por una parte, se inicia el conteo de tiempo de juego (para en un futuro establecer el puntaje del usuario) usando **time¨**. 
+
+Por otra parte, haciendo uso de la función **len** se establece el largo de la palabra seleccionada por el programa y, se imprime un mensaje para que el usuario sepa la cantidad de letras que contiene la palabra y además, se muestra en pantallas las líneas que representan cada palabra que se debe adivinar.
+
+Por último, haciendo uso de **while** usamos una condición para que se repita continuamente la solicitud para que el usuario ingrese una letra hasta que se quede sin vidas. Dentro de este, tambien se llama la función donde se imprimirá el avance del ahorcado cada vez que el usuario pierda una vida. Decidimos empatizar con el usuario y, por esta razón, en caso de ingresar una palabra repetida se le informará 
+
+### Función Dibujo ahorcado
+
 Para que el juego se viera un poco más amistoso decidimos usar ASCII art, "El arte ASCII es cualquier tipo de imagen o diagrama dibujado con caracteres imprimibles en el juego de caracteres ASCII" Según la pagina de ASCII art que utilizamos:\
 https://www.asciiart.eu/faq
-### Dibujos
-En un principio lo que hicimos fue crear la función que dibujaría el muñeco teniendo en cuenta la cantidad de vidas. Este pequeño lo dibujamos en 15 pasos que sería el máximo de vidas. Con un condicional if-elif le dimos a cada vida una progresión de muñecos que se contruyen de a poco. Vale mencionar que utilizamos una triple comilla en el print tanto de él muñeco como del ASCII art, esto permite que se imprima exactamente lo que se escribe así tenga espacios o saltos de línea sin la necesidad de un script determinado.
+
+En un principio lo que hicimos fue crear la función que dibujaría el muñeco teniendo en cuenta la cantidad de vidas. Este pequeño lo dibujamos en 15 pasos que sería el máximo de vidas. Con un condicional if-elif le dimos a cada vida una progresión de muñecos que se contruyen de a poco. 
+
+
+Vale mencionar que utilizamos una triple comilla en el print tanto de él muñeco como del ASCII art, esto permite que se imprima exactamente lo que se escribe así tenga espacios o saltos de línea sin la necesidad de un script determinado.
+
 ```python
 def imprimir_ahorcado(vidas):
     if vidas == 1:
