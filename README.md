@@ -42,10 +42,15 @@ Empezamos programando la preparación del juego, es decir las posibilidades que 
 Lo primero que hicimos fue definir nuestras variables: idioma, nivel, vidas y opciones. El programa decidimos introducirlo en un **while** para asegurarnos de que el usuario ingrese únicamente las opciones que tenemos contempladas, en caso de ser diferente las preguntas se volverán a realizar hasta que el usuario lea y siga de manera correcta el enunciado.
 
    - Idioma:\
-     Después de haber sido escogido, el resto del juego se ejecutaria en este idioma, lo que quería decir que cada outpout debía tener los cuatro idiomas. 
+     El usuario debe escoger entre las opciones: español, inglés, francés o alemán. Después de haber sido escogido el idioma, el resto del juego se ejecutaria en este idioma, esto quiere decir, que realizamos condicionales y outputs especificos por cada idioma.
+     
    - Dificultad por palabra:\
-      Esto determinaría el grupo en el que la función random se movería 
-   - Dificultad por vidas (Los intentos fallidos en los que se dibujaría por completo el muñeco)
+      El usuario debe escoger entre nivel principiante, intermedio o avanzado. Cada nivel de dificultad está determinado por la cantidad de letras que contiene la palabra (principiante: 0-5; intermedio: 6-10; avanzado: 11-16) escogida de la base de datos. El nivel seleccionado determina la columna de la base de datos en el que la función random se movería y seleccionaría la palabra aleatoria.
+     
+   - Dificultad por vidas:\
+     El usuario debe seleccionar si desea contar con 5, 10 o 15 vidas; esto influirá en su puntaje final (teniendo en cuenta tambien el nivel de dificultad) Además, según la cantidad de vidas restantes se irá dibujando el ahorcado.
+   - ¡Que inicie el juego!:\
+     Una vez este determinada cada variable aparecerá un letrero tipo video juego (en el idioma seleccionado) informándole al usuario que comenzará el juego.
 ```python
 def idioma_y_nivel(base1):
     idioma=''
