@@ -329,5 +329,25 @@ En esta podemos observar que el puntaje máximo será 10.000 y a este valor se l
 AQUÍ PONER LA FUNCIÓN FINAL
 ```
 
+### Función Fin Partida
+
+En esta función se muestra un mensaje (en el idioma correspondiente) de "motivación" / "felicitaciones" / "sube ego" según el puntaje final que se calculó en la anterior función.
+
+```python
+AQUÍ PONER LA FUNCIÓN FINAL
+```
+
+### Función Jugar
+
+Esta sería como una función que reemplazaría nuestra función main en un código normal...como decidimos incluir la opción de multijugador fue necesario crear está función. Aquí se importa nuestra base de datos en formato csv (valores separados por comas el cual permite guardar los datos en un formato de tabla estructurada) y se llaman las demás funciones definiendo las variables que se requieran en otras funciones teniendo en cuenta los return de cada una.
+
+```python
+AQUÍ PONER LA FUNCIÓN FINAL
+```
+
+
+
+
+(**OJO: NO SE SI ESTO LO PUEDAS INCLUIR CUANDO SE COLOQUE LA FUNCIÓN DE MULTIJUGADOR**)
 * ¡Listo, el juego se ejecuta perfectamente, el usuario puede decidir en que modalidad jugar, y las iteraciones se hacen correctamente! ¿Ahora qué? Bueno, sería bastante genial competir con un amigo.\
 Descubrimos que existe una librería llamda ```threading``` que permite la creación y gestión de hilos. Los hilos son unidades de ejecución independientes que permiten que un programa realice múltiples tareas simultáneamente. Al utilizar la clase Thread, se pueden crear y controlar hilos, cada uno ejecutando funciones específicas. Sin embargo, tuvimos algunos problemas ya que es crucial considerar la sincronización y los problemas de concurrencia al acceder a datos compartidos entre hilos, algo que evidentemente pordia ocurrir cuando los hilos que queríamos manejar eran de la misma función.
