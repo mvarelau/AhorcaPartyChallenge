@@ -65,158 +65,7 @@ Lo primero que hicimos fue definir nuestras variables: idioma, nivel, vidas y op
      Una vez este determinada cada variable aparecerá un letrero tipo video juego (en el idioma seleccionado) informándole al usuario que comenzará el juego.
 
 ```python
-def idioma_y_nivel(base1):
-    idioma=''
-    nivel = 0
-    vidas=0
-    opciones = ''
-    
-    while True:
-
-      print("Ingrese el idioma en que quiera jugar")
-      idioma = input("Ingrese 'español', 'inglés', 'francés' o 'alemán': ")
-      idioma = idioma.lower()
-
-      if idioma not in ["español", "espanol", "inglés", "ingles", "francés", "frances", "alemán", "aleman"]:
-        print("Idioma no válido, por favor inténtelo nuevamente")
-
-      else:
-
-        if idioma == "español" or idioma =="espanol":
-
-          print("Ingrese el nivel")
-          nivel = int(input("Ingrese '1' para: principiante, '2' para: intermedio o '3' para: avanzado: "))
-
-          if nivel not in [1, 2, 3]:
-
-            print("El nivel no es válido, por favor inténtelo nuevamente")
-            continue
-
-          vidas = int(input("Ahora ingrese la cantidad de vidas que desea tener: \n Fácil: 15 \n Intermedio: 10 \n Difícil: 5 \n "))
-
-          if vidas not in [15, 10, 5]:
-            print("El número no es válido, por favor inténtelo nuevamente")
-            continue
-
-          opciones = base1[f'Palabra Español Nivel {nivel}'].unique()
-          print("""  _____                                  _                                 _
- / ___ \                                (_)                               | |
-| |   | |_   _  ____     ____ ___  ____  _  ____ ____   ____ ____     ____| |
-| |   |_| | | |/ _  )   / ___) _ \|    \| |/ _  )  _ \ / ___) _  )   / _  ) |
- \ \____| |_| ( (/ /   ( (__| |_| | | | | ( (/ /| | | ( (__( (/ /   ( (/ /| |
-  \_____)\____|\____)   \____)___/|_|_|_|_|\____)_| |_|\____)____)   \____)_|
-
-   _
-  (_)
-   _ _   _  ____ ____  ___
-  | | | | |/ _  ) _  |/ _ 
-  | | |_| ( (/ ( ( | | |_| |
- _| |\____|\____)_|| |\___/
-(__/           (_____|                                                       """)
-
-
-        elif idioma == "inglés" or idioma =="ingles":
-
-          print("Enter level")
-          nivel = int(input("Enter '1' for: beginner, '2' for: intermediate or '3' for: advanced: "))
-
-          if nivel not in [1, 2, 3]:
-            print("The level is invalid, please try again")
-            continue
-
-          vidas = int(input("Now enter the amount of lives that you want to have: \n Easy: 15 \n Intermediate: 10 \n Hard: 5 \n "))
-
-          if vidas not in [15, 10, 5]:
-
-            print("The number is not valid, please try again")
-            continue
-
-          opciones = base1[f'Palabra Inglés Nivel {nivel}'].unique()
-          print(""" _                         _
-| |           _       _   | |
-| |      ____| |_    | |_ | | _   ____     ____  ____ ____   ____
-| |     / _  )  _)   |  _)| || \ / _  )   / _  |/ _  |    \ / _  )
-| |____( (/ /| |__   | |__| | | ( (/ /   ( ( | ( ( | | | | ( (/ /
-|_______)____)\___)   \___)_| |_|\____)   \_|| |\_||_|_|_|_|\____)
-                                         (_____|
- _                _
-| |              (_)
-| | _   ____ ____ _ ____
-| || \ / _  ) _  | |  _ 
-| |_) | (/ ( ( | | | | | |
-|____/ \____)_|| |_|_| |_|
-           (_____|                                                """)
-
-        elif idioma == "francés" or idioma =="frances":
-
-          print("Entrez le niveau")
-          nivel = int(input("Entrez '1' pour: débutant, '2' pour: intermédiaire ou '3' pour: avancé: "))
-
-          if nivel not in [1, 2, 3]:
-
-            print("Le niveau n'est pas valide, veuillez réessayer")
-            continue
-
-          vidas = int(input("Entrez maintenant le nombre de vies que vous souhaitez avoir: \n Facile: 15 \n Intermédiaire: 10 \n Difficile: 5 \n "))
-
-          if vidas not in [15, 10, 5]:
-
-            print("Le numéro n'est pas valide, veuillez réessayer")
-            continue
-
-          opciones = base1[f'Palabra Francés Nivel {nivel}'].unique()
-          print("""  _____                 _            _
- / ___ \               | |          (_)
-| |   | |_   _  ____   | | ____      _  ____ _   _
-| |   |_| | | |/ _  )  | |/ _  )    | |/ _  ) | | |
- \ \____| |_| ( (/ /   | ( (/ /     | ( (/ /| |_| |
-  \_____)\____|\____)  |_|\____)   _| |\____)\____|
-                                  (__/
-
-
-  ____ ___  ____  ____   ____ ____   ____ ____
- / ___) _ \|    \|    \ / _  )  _ \ / ___) _  )
-( (__| |_| | | | | | | ( (/ /| | | ( (__( (/ /
- \____)___/|_|_|_|_|_|_|\____)_| |_|\____)____)    """)
-
-        elif idioma == "alemán" or idioma =="aleman":
-
-          print("Ebene eingeben")
-          nivel = int(input("Geben Sie '1' für: anfänger, '2' für: mittelstufe, oder '3' für: fortgeschrittene ein:"))
-
-          if nivel not in [1, 2, 3]:
-
-            print("Level ist ungültig, bitte versuchen Sie es erneut")
-            continue
-
-          vidas = int(input("Geben Sie nun die Anzahl der Leben ein, die Sie haben möchten: \n Leicht: 15 \n Mittel: 10 \n Schwer: 5 \n"))
-
-          if vidas not in [15, 10, 5]:
-
-            print("Die Nummer ist ungültig. Bitte versuchen Sie es erneut")
-            continue
-
-          opciones = base1[f'Palabra Alemán Nivel {nivel}'].unique()
-          print(""" _                                    _                ______       _       _  
-(_)                        _         | |              / _____)     (_)     | | 
- _       _____  ___  ___ _| |_     __| |_____  ___   ( (____  ____  _ _____| | 
-| |     (____ |/___)/___|_   _)   / _  (____ |/___)   \____ \|  _ \| | ___ | | 
-| |_____/ ___ |___ |___ | | |_   ( (_| / ___ |___ |   _____) ) |_| | | ____| | 
-|_______)_____(___/(___/   \__)   \____\_____(___/   (______/|  __/|_|_____)\_)
-                                                             |_|               
- _                 _                                                           
-| |               (_)                                                          
-| |__  _____  ____ _ ____  ____  _____ ____                                    
-|  _ \| ___ |/ _  | |  _ \|  _ \| ___ |  _ \                                   
-| |_) ) ____( (_| | | | | | | | | ____| | | |                                  
-|____/|_____)\___ |_|_| |_|_| |_|_____)_| |_|                                  
-            (_____|                                                            """)
-
-        print("\n")
-
-        return idioma, vidas, opciones, nivel
-
-        break
+COPIAR FUNCIÓN YA LISTA
 ```
 
 ### Función Rayas palabra incógnita
@@ -225,7 +74,11 @@ Nuestra segunda función tiene varias aplicaciones. Por una parte, se inicia el 
 
 Por otra parte, haciendo uso de la función **len** se establece el largo de la palabra seleccionada por el programa y, se imprime un mensaje para que el usuario sepa la cantidad de letras que contiene la palabra y además, se muestra en pantallas las líneas que representan cada palabra que se debe adivinar.
 
-Por último, haciendo uso de **while** usamos una condición para que se repita continuamente la solicitud para que el usuario ingrese una letra hasta que se quede sin vidas. Dentro de este, tambien se llama la función donde se imprimirá el avance del ahorcado cada vez que el usuario pierda una vida. Decidimos empatizar con el usuario y, por esta razón, en caso de ingresar una palabra repetida se le informará 
+Por último, haciendo uso de **while** usamos una condición para que se repita continuamente la solicitud para que el usuario ingrese una letra hasta que se quede sin vidas. Dentro de este, tambien se llama la función donde se imprimirá el avance del ahorcado cada vez que el usuario pierda una vida. Decidimos empatizar con el usuario y, por esta razón, en caso de ingresar una palabra repetida se le informará que repitió la palabra y NO perderá una vida (por distraido). Decidimos incluir dentro de esta misma función por efectos prácticos el diagrama final del ahorcado cuando el usuario se queda sin vidas (y ya no se cumpla el while) y un letrero informando que perdió el juego (en el idioma correspondiente)
+
+```python
+COPIAR FUNCIÓN YA LISTA
+```
 
 ### Función Dibujo ahorcado
 
