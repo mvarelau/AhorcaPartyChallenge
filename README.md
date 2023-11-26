@@ -6,13 +6,11 @@
 
 ![Logo](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c92c3d58-f7b8-457c-92c4-595a98108c1b)
 
-[image-1]: https://media.giphy.com/media/qLHzYjlA2FW8g/giphy.gif
-
 ## Planeación
 
 En un principio tuvimos que organizar los pasos que ibamos a seguir y las posibilidades que teníamos para hacer el juego un poco más complejo. Lo plasmamos en el siguiente cuadro: 
 
-![image](https://github.com/mvarelau/AhorcaPartyChallenge/assets/141885396/c967ae9d-e624-432f-a007-9690e3f82a9a)
+IMAGEN BASE DE DATOS CON EL ALEMÁN
 
 A partir de este cuadro empezamos a tomar decisiones: 
 
