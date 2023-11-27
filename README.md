@@ -68,7 +68,7 @@ Lo primero que hicimos fue definir nuestras variables: idioma, nivel, vidas y op
 COPIAR FUNCIÓN YA LISTA
 ```
 
-### Función Rayas palabra incógnita
+### Función rayas palabra incógnita
 
 Nuestra segunda función es la función **"motor"** del juego, ya que en torno a está funciona la mayoría del sentido del juego. Por una parte, se inicia el conteo de tiempo de juego (para en un futuro establecer el puntaje del usuario) usando **time¨**. 
 
@@ -84,7 +84,7 @@ Al final de está función se retornará las variables start_time, vidas (se le 
 COPIAR FUNCIÓN YA LISTA
 ```
 
-### Función Dibujo ahorcado
+### Función dibujo ahorcado
 
 Para que el juego se viera un poco más amistoso decidimos usar ASCII art, "El arte ASCII es cualquier tipo de imagen o diagrama dibujado con caracteres imprimibles en el juego de caracteres ASCII" Según la pagina de ASCII art que utilizamos:\
 https://www.asciiart.eu/faq
@@ -98,7 +98,7 @@ Vale mencionar que utilizamos una triple comilla en el print tanto de él muñec
 AQUÍ PONER LA FUNCIÓN FINAL
 ```
 
-### Función Puntaje
+### Función puntaje
 
 Ahora, una de las funciones más esperadas por el usuario...la función que determina el puntaje. Si se corré está función significa que el juego llegó a su final y por está razón el cronometro parará y se calculará el tiempo total que se demoró el usuario en adivinar la palabra. 
 
@@ -173,7 +173,7 @@ En esta podemos observar que el puntaje máximo será 10.000 y a este valor se l
 AQUÍ PONER LA FUNCIÓN FINAL
 ```
 
-### Función Fin Partida
+### Función fin partida
 
 En esta función se muestra un mensaje (en el idioma correspondiente) de "motivación" / "felicitaciones" / "sube ego" según el puntaje final que se calculó en la anterior función.
 
@@ -181,7 +181,7 @@ En esta función se muestra un mensaje (en el idioma correspondiente) de "motiva
 AQUÍ PONER LA FUNCIÓN FINAL
 ```
 
-### Función Jugar
+### Función jugar
 
 Esta sería como una función que reemplazaría nuestra función main en un código normal...como decidimos incluir la opción de multijugador fue necesario crear está función. Aquí se importa nuestra base de datos en formato csv (valores separados por comas el cual permite guardar los datos en un formato de tabla estructurada) y se llaman las demás funciones definiendo las variables que se requieran en otras funciones teniendo en cuenta los return de cada una.
 
