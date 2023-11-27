@@ -602,40 +602,41 @@ En esta podemos observar que el puntaje máximo será 10.000 y a este valor se l
 def puntaje(start_time, idioma, vidas_orj, nivel, vidas):
  
     end_time = time.time() #Finalizar cronometro 
-    elapsed_time = end_time - start_time 
+    elapsed_time = end_time - start_time #Se halla el tiempo total 
     puntaje_base: int = 0
     puntaje_vidas:int = 0
     if nivel == 1:
-        puntaje_base = 100
+        puntaje_base = 100                       #Se define el puntaje base para el nivel 1
         if vidas_orj==5:
-            puntaje_vidas = 10 * (5 - vidas)     # Las vidas q gastaron
+            puntaje_vidas = 10 * (5 - vidas)     #Calcula las vidas que se gastaron
         elif vidas_orj==10:
-            puntaje_vidas = 10 * (10 - vidas)
+            puntaje_vidas = 10 * (10 - vidas)    #Calcula las vidas que se gastaron
         elif vidas_orj==15:
-            puntaje_vidas = 10 * (15 - vidas)
+            puntaje_vidas = 10 * (15 - vidas)    #Calcula las vidas que se gastaron
 
     elif nivel == 2:
-        puntaje_base = 150
+        puntaje_base = 150                       #Se define el puntaje base para el nivel 2
         if vidas_orj==5:
-            puntaje_vidas = 10 * (5 - vidas)     # Las vidas q gastaron
+            puntaje_vidas = 10 * (5 - vidas)     #Calcula las vidas que se gastaron
         elif vidas_orj==10:
-            puntaje_vidas = 10 * (10 - vidas)
+            puntaje_vidas = 10 * (10 - vidas)    #Calcula las vidas que se gastaron
         elif vidas_orj==15:
-            puntaje_vidas = 10 * (15 - vidas)
+            puntaje_vidas = 10 * (15 - vidas)    #Calcula las vidas que se gastaron
 
     elif vidas_orj == 3:
-        puntaje_base = 200
+        puntaje_base = 200                       #Se define el puntaje base para el nivel 3
         if vidas_orj==5:
-            puntaje_vidas = 10 * (5 - vidas)     # Las vidas q gastaron
+            puntaje_vidas = 10 * (5 - vidas)     #Calcula las vidas que se gastaron
         elif vidas_orj==10:
-            puntaje_vidas = 10 * (10 - vidas)
+            puntaje_vidas = 10 * (10 - vidas)    #Calcula las vidas que se gastaron
         elif vidas_orj==15:
-            puntaje_vidas = 10 * (15 - vidas)
+            puntaje_vidas = 10 * (15 - vidas)    #Calcula las vidas que se gastaron
 
-    puntaje_final = 10000 - (elapsed_time * puntaje_base) - puntaje_vidas
+    puntaje_final = 10000 - (elapsed_time * puntaje_base) - puntaje_vidas   #En esta podemos observar que el puntaje máximo será 10.000 y a este valor se le restará:
+                                                                            #La multiplicación del tiempo que se demoró en adivinar la palabra por el puntaje base (elapsed_time * puntaje_base)
+                                                                            #El puntaje que obtuvo según la cantidad de vidas restantes
 
     return puntaje_final
-
 ```
 
 ### Función fin partida
@@ -648,17 +649,19 @@ def fin_partida(puntaje_final, idioma):
   if idioma=="español" or idioma =="espanol":
 
     print("\n")
-    print("¡Obtuviste un puntaje de: " + str(puntaje_final) +"!")
+    print("¡Obtuviste un puntaje de: " + str(puntaje_final) +"!")           #Se muestra el puntaje final obtenido
     print("\n")
 
-    if puntaje_final<=3333:
-      print(":( sigue prácticando)")
+    if puntaje_final<=3333:                                                 #Desempeño bajo y su mensaje correspondiente
+      print(":( sigue prácticando)")              
 
-    if puntaje_final>3333 and puntaje_final<6666:
+    if puntaje_final>3333 and puntaje_final<6666:                           #Desempeño medio y su mensaje correspondiente
       print("¡Buen trabajo, sigue prácticando para convertirte en maestro ;)")
 
-    if puntaje_final>=6666:
+    if puntaje_final>=6666:                                                 #Desempeño alto y su mensaje correspondiente
       print("¡Excelente, eres todo un maestro :)")
+
+      #Lo mismo que el código anterior pero en inglés
 
   if idioma=="inglés" or idioma =="ingles":
 
@@ -675,6 +678,8 @@ def fin_partida(puntaje_final, idioma):
     if puntaje_final>=6666:
       print("¡Excellent, you are a master :)")
 
+      #Lo mismo que el código anterior pero en francés
+
   if idioma=="francés" or idioma =="frances":
 
     print("\n")
@@ -689,6 +694,8 @@ def fin_partida(puntaje_final, idioma):
 
     if puntaje_final>=6666:
       print("¡Excellent, tu es un maître :)")
+
+      #Lo mismo que el código anterior pero en alemán
 
   if idioma=="alemán" or idioma =="aleman":
 
@@ -712,8 +719,11 @@ Esta sería como una función que reemplazaría nuestra función main en un cód
 
 ```python
 def Jugar_1():
-    base1 = pd.read_csv('C:\Base de Datos.csv')
+    base1 = pd.read_csv('C:\Base de Datos.csv')                   #Se abre la base de datos en formato csv
     print("------------------------------------------------------------------------------------------------------------")
+
+    #Se llaman y se definen las variables que retorna cada función
+
     idioma, vidas, opciones, nivel = idioma_y_nivel(base1)
     start_time, vidas, vidas_orj=rayas_dibujar(idioma, vidas, opciones)
     puntaje_final=puntaje(start_time, idioma, vidas, nivel, vidas_orj)
