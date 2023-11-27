@@ -736,23 +736,23 @@ def Jugar_1():
  Descubrimos que existe una librería llamda ```threading``` que permite la creación y gestión de hilos. Los hilos son unidades de ejecución independientes que permiten que un programa realice múltiples tareas simultáneamente. Al utilizar la clase Thread, se pueden crear y controlar hilos, cada uno ejecutando funciones específicas. Sin embargo, tuvimos algunos problemas ya que es crucial considerar la sincronización y los problemas de concurrencia al acceder a datos compartidos entre hilos, algo que evidentemente pordia ocurrir cuando los hilos que queríamos manejar eran de la misma función. \
  Decidimos que las condiciones para el juego simultaneo debían ser lás mismas, asi que antes de hacer el llamado a la función simultaneamente creamos una función en la que se hacer llamado a todas las funciones excpto a lo función ```idioma_y_nivel```:
 ```python
-def Jugar_2(idioma,nivel,opciones,vidas):
-    start_time, vidas, vidas_orj=rayas_dibujar(idioma, vidas, opciones) 
-    puntaje_final=puntaje(start_time, idioma, vidas, nivel, vidas_orj)
+def Jugar_2(idioma, nivel, opciones, vidas):
+    start_time, vidas, vidas_orj = rayas_dibujar(idioma, vidas, opciones)
+    puntaje_final = puntaje(start_time, idioma, vidas, nivel, vidas_orj)
     if vidas != 0:
         fin_partida(puntaje_final, idioma)
+
 ```
 Con eso listo ahora si podiamos hacer el llamdo co la función ```Thread```:
 ```Python
 def Simultaneo():
     base1 = pd.read_csv('C:\Base de Datos.csv')
     print("------------------------------------------------------------------------------------------------------------")
-    idioma, vidas, opciones,nivel = idioma_y_nivel(base1)
+    idioma, vidas, opciones, nivel = idioma_y_nivel(base1)
 
-    
     # Crear dos hilos para que dos jugadores jueguen simultáneamente
-    t1 = threading.Thread(target=Jugar_2, args=(idioma, vidas, opciones,nivel))
-    t2 = threading.Thread(target=Jugar_2, args=(idioma, vidas, opciones,nivel))
+    t1 = threading.Thread(target=Jugar_2, args=(idioma, nivel, opciones, vidas))
+    t2 = threading.Thread(target=Jugar_2, args=(idioma, nivel, opciones, vidas))
 
     t1.start()
     t2.start()
@@ -763,19 +763,20 @@ def Simultaneo():
 ### Definir Jugadores
 Se crea una variable en la que el usuario ingresa la cantidad de jugadores que desea, si ingresa un caracter diferente a 1 o 2 se volvera a pedir que lo ingrese.
 ```python
-Jugadores=int(input("Ingrese la cantidad de jugadores (1 o 2): "))
-if Jugadores != 2 and Jugadores != 1: 
-   Jugadores=int(input("Cantidad de jugadores no válida, intentalo de nuevo: "))
-   
-else: 
-   Jugadores=Jugadores
+
+Jugadores = int(input("Ingrese la cantidad de jugadores (1 o 2): "))
+if Jugadores != 2 and Jugadores != 1:
+    Jugadores = int(input("Cantidad de jugadores no válida, inténtalo de nuevo: "))
+else:
+    Jugadores = Jugadores
 ```
 ### Función Main 
 Teniendo en cuenta la cantidad de jugadores, se hará llamado a la función ```Jugar_1``` o ```Simultaneo```
 ```python
-if __name__=="__main__":
-   if Jugadores==1:
-      Jugar_1()
-   if Jugadores == 2:
-      Simultaneo()
+
+if __name__ == "__main__":
+    if Jugadores == 1:
+        Jugar_1()
+    elif Jugadores == 2:
+        Simultaneo()
 ```
